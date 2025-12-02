@@ -17,7 +17,7 @@ const ShowMore = ({ pageNumber, isNext, setDisplayCount }: ShowMoreProps) => {
   return (
     <div className="w-full flex-center gap-5 mt-10">
       {/* Affiche le bouton "Show More" uniquement s'il y a plus d'éléments à afficher */}
-      {!isNext && (
+      {isNext && (
         <CustomButton
           btnType="button"
           title="Afficher plus"

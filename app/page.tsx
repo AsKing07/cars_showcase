@@ -87,7 +87,7 @@ export default function Home() {
 
             <ShowMore
               pageNumber={displayCount / 10}
-              isNext={displayCount >= allCars.length}
+              isNext={displayCount < allCars.length}
               setDisplayCount={setDisplayCount}
             />
           </section>
