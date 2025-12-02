@@ -19,7 +19,6 @@ export interface FilterProps {
   manufacturer?: string;
   year?: number;
   model?: string;
-  limit?: number;
   fuel?: string;
 }
 
@@ -58,7 +57,7 @@ export interface CustomFilterProps<T> {
 export interface ShowMoreProps {
   pageNumber: number;
   isNext: boolean;
-  setLimit: (limit: number) => void;
+  setDisplayCount: (count: number) => void;
 }
 
 export interface SearchManuFacturerProps {

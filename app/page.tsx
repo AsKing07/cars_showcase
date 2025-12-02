@@ -23,21 +23,22 @@ export default function Home() {
   const [fuel, setFuel] = useState("");
   const [year, setYear] = useState(2023);
 
-  // États de pagination et de limite
-  const [limit, setLimit] = useState(10);
+  // État de pagination côté client
+  const [displayCount, setDisplayCount] = useState(10);
 
   // Fonction pour obtenir les voitures
   const getCars = async () => {
+    setLoading(true);
     try {
       const result = await fetchCars({
         manufacturer: manufacturer || "",
         year: year || 2010,
         fuel: fuel || "",
-        limit: limit || 10,
         model: model || "",
       });
 
       setAllCars(result);
+      setDisplayCount(10); // Reset display count when filters change
     } catch (error) {
       console.log(error);
     } finally {
@@ -48,7 +49,7 @@ export default function Home() {
   // Utilisation de useEffect pour appeler getCars lorsque les états de filtre changent
   useEffect(() => {
     getCars();
-  }, [fuel, year, limit, manufacturer, model]);
+  }, [fuel, year, manufacturer, model]);
 
   return (
     <main className='overflow-hidden'>
@@ -72,7 +73,7 @@ export default function Home() {
         {allCars.length > 0 ? (
           <section id="discover">
             <div className='home__cars-wrapper'>
-              {allCars?.map((car, index) => (
+              {allCars?.slice(0, displayCount).map((car, index) => (
                 <CarCard key={`car-${index}`} car={car} />
               ))}
             </div>
@@ -85,9 +86,9 @@ export default function Home() {
             )}
 
             <ShowMore
-              pageNumber={limit / 10}
-              isNext={limit > allCars.length}
-              setLimit={setLimit}
+              pageNumber={displayCount / 10}
+              isNext={displayCount >= allCars.length}
+              setDisplayCount={setDisplayCount}
             />
           </section>
         ) : (

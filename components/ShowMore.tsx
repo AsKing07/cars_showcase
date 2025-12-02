@@ -5,13 +5,13 @@ import { ShowMoreProps } from "@/types";
 import { CustomButton } from ".";
 
 // Composant ShowMore pour afficher plus d'éléments
-const ShowMore = ({ pageNumber, isNext, setLimit }: ShowMoreProps) => {
+const ShowMore = ({ pageNumber, isNext, setDisplayCount }: ShowMoreProps) => {
 
   // Gestion de la navigation pour afficher plus d'éléments
   const handleNavigation = () => {
-    // Calcul du nouveau nombre limite en fonction du numéro de page et du type de navigation
-    const newLimit = (pageNumber + 1) * 10;
-    setLimit(newLimit);
+    // Calcul du nouveau nombre d'éléments à afficher
+    const newDisplayCount = (pageNumber + 1) * 10;
+    setDisplayCount(newDisplayCount);
   };
 
   return (
