@@ -22,7 +22,7 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 
 // Fonction asynchrone pour récupérer des informations sur les voitures en fonction des filtres spécifiés
 export async function fetchCars(filters: FilterProps) {
-  const { manufacturer, year, model, limit, fuel } = filters;
+  const { manufacturer, year, model, fuel } = filters;
 
   // Définir les en-têtes requis pour la requête API
   const headers: HeadersInit = {
@@ -32,7 +32,7 @@ export async function fetchCars(filters: FilterProps) {
 
   // Effectuer la requête API pour obtenir des informations sur les voitures
   const response = await fetch(
-    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&fuel_type=${fuel}`,
     {
       headers: headers,
     }
